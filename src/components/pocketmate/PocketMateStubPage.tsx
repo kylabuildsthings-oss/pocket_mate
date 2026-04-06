@@ -13,6 +13,8 @@ import {
 import { PMCard } from "./PMCard";
 import { PMStat } from "./PMStat";
 import { PMTabs } from "./PMTabs";
+import { useModeStore } from "@/store/mode/useModeStore";
+import { getModeAwareContext } from "@/lib/modeAware";
 
 export function PocketMateStubPage({
   title,
@@ -23,6 +25,9 @@ export function PocketMateStubPage({
   description: string;
   accent?: string;
 }) {
+  const mode = useModeStore((state) => state.mode);
+  const modeContext = getModeAwareContext(mode);
+
   return (
     <VStack align="stretch" spacing={8}>
       <VStack align="start" spacing={2}>
@@ -40,8 +45,16 @@ export function PocketMateStubPage({
 
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={4}>
         <PMStat label="Phase" value="3" hint="App shell + navigation" />
-        <PMStat label="Mode" value="Demo" hint="Live toggle — next milestone" />
-        <PMStat label="Status" value="Stable" hint="Local scaffolding" />
+        <PMStat
+          label="Mode"
+          value={mode === "live" ? "Live" : "Demo"}
+          hint={modeContext.riskLabel}
+        />
+        <PMStat
+          label="Execution"
+          value="Hybrid"
+          hint={modeContext.executionLabel}
+        />
       </SimpleGrid>
 
       <PMCard>
@@ -56,14 +69,15 @@ export function PocketMateStubPage({
           <TabPanels>
             <TabPanel px={0} pt={4}>
               <Text color="pm.text">
-                This route is wired into the PocketMate shell. Use the sidebar to move between Learn,
-                Trade, Build, and reference surfaces.
+                This route is wired into the PocketMate shell. Use the sidebar
+                to move between Learn, Trade, Build, and reference surfaces.
               </Text>
             </TabPanel>
             <TabPanel px={0} pt={4}>
               <Text color="pm.text">
-                Next: global Demo/Live toggle, mode-aware providers, and page-specific layouts
-                (dashboard widgets, lesson flows, trade hybrid UI).
+                Next: global Demo/Live toggle, mode-aware providers, and
+                page-specific layouts (dashboard widgets, lesson flows, trade
+                hybrid UI).
               </Text>
             </TabPanel>
           </TabPanels>

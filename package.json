@@ -15,12 +15,27 @@
     "yarn": ">=1.22.10"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3010",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "verify:client-env": "node scripts/check-client-env.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "e2e": "playwright test",
+    "e2e:install": "playwright install chromium",
     "prepare": "husky install",
-    "docker": "docker build -t defikids-dapp . && docker run -p 3000:3000 defikids-dapp"
+    "docker": "docker build -t defikids-dapp . && docker run -p 3000:3000 defikids-dapp",
+    "postinstall": "prisma generate",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "db:migrate:dev": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "db:seed": "prisma db seed"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.cjs"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.0",
@@ -32,6 +47,7 @@
     "@fontsource/permanent-marker": "^5.0.7",
     "@fontsource/slackey": "^5.0.7",
     "@pinata/sdk": "^2.1.0",
+    "@prisma/client": "^5.22.0",
     "@rainbow-me/rainbowkit": "^1.0.8",
     "@sendgrid/mail": "^7.7.0",
     "@tabler/icons-react": "^2.42.0",
@@ -39,6 +55,7 @@
     "@vercel/kv": "^0.2.2",
     "autoprefixer": "^10.4.14",
     "axios": "^1.4.0",
+    "canvas-confetti": "^1.9.4",
     "chai-as-promised": "^7.1.1",
     "dotenv": "^16.0.0",
     "ethers": "^6.8.1",
@@ -51,6 +68,7 @@
     "mongodb": "^6.3.0",
     "mongoose": "^8.0.3",
     "next": "^13.4.19",
+    "next-auth": "^4.24.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
@@ -63,7 +81,9 @@
     "zustand": "^4.4.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.49.1",
     "@svgr/webpack": "^6.2.1",
+    "@types/canvas-confetti": "^1.9.0",
     "@types/formidable": "2.0.6",
     "@types/jsonwebtoken": "^9.0.2",
     "@types/mocha": "^9.1.0",
@@ -77,10 +97,14 @@
     "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.3",
+    "node-mocks-http": "^1.16.1",
     "prettier": "^2.5.1",
+    "prisma": "^5.22.0",
     "ts-node": "^10.4.0",
     "typechain": "^3.0.0",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "vite": "^5.4.11",
+    "vitest": "^1.6.0"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",

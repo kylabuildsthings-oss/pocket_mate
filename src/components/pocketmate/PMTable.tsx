@@ -22,7 +22,16 @@ export function PMTable({ caption, children, ...props }: PMTableProps) {
       {...props}
     >
       {caption ? <TableCaption color="pm.muted">{caption}</TableCaption> : null}
-      <Table variant="simple" size="sm" sx={{ "th, td": { borderColor: "pm.border" } }}>
+      <Table
+        variant="simple"
+        size="sm"
+        sx={{
+          "th, td": { borderColor: "pm.border" },
+          th: {
+            fontFamily: "var(--font-pm-body), system-ui, sans-serif",
+          },
+        }}
+      >
         {children}
       </Table>
     </TableContainer>

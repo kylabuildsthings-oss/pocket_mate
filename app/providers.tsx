@@ -4,17 +4,31 @@ import { CacheProvider } from "@chakra-ui/next-js";
 import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "@/services/chakra/theme";
 import { ColorModeScript } from "@chakra-ui/react";
-import { chains, wagmiConfig } from "@/services/wagmi/wagmiConfig";
-import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import { WagmiConfig } from "wagmi";
-import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import { SessionProvider } from "next-auth/react";
 import "@fontsource/slackey";
 import "@fontsource-variable/jetbrains-mono";
 
-export function Providers({ children }: { children: React.ReactNode }) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+const Web3Providers = dynamic(() => import("./web3-providers"), {
+  ssr: false,
+  loading: () => (
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "#0b0e14",
+        color: "#e2e8f0",
+        fontFamily: "system-ui, sans-serif",
+      }}
+    >
+      Loading PocketMate…
+    </div>
+  ),
+});
 
+export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
@@ -29,27 +43,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
             },
           }}
         >
-          <WagmiConfig config={wagmiConfig}>
-            <RainbowKitProvider chains={chains} modalSize="compact">
-              {mounted ? (
-                children
-              ) : (
-                <div
-                  style={{
-                    minHeight: "100vh",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    background: "#0b0e14",
-                    color: "#e2e8f0",
-                    fontFamily: "system-ui, sans-serif",
-                  }}
-                >
-                  Loading PocketMate…
-                </div>
-              )}
-            </RainbowKitProvider>
-          </WagmiConfig>
+          <SessionProvider refetchOnWindowFocus={false}>
+            <Web3Providers>{children}</Web3Providers>
+          </SessionProvider>
         </ChakraProvider>
       </CacheProvider>
     </>

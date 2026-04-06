@@ -1,10 +1,8 @@
 "use client";
 
 import { getDefaultWallets } from "@rainbow-me/rainbowkit";
-import "@rainbow-me/rainbowkit/styles.css";
 import { configureChains, createConfig } from "wagmi";
-import { goerli } from "wagmi/chains";
-import { alchemyProvider } from "wagmi/providers/alchemy";
+import { goerli, mainnet } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 
 // WalletConnect v2 requires a Cloud project id. Use YOUR_PROJECT_ID locally:
@@ -16,16 +14,12 @@ const projectId =
   "YOUR_PROJECT_ID";
 
 export const { chains, publicClient } = configureChains(
-  [goerli],
-  [
-    // alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY_GOERLI }),
-    publicProvider(),
-    publicProvider(),
-  ]
+  [goerli, mainnet],
+  [publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
-  appName: "Defikids",
+  appName: "PocketMate",
   projectId,
   chains,
 });

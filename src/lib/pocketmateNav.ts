@@ -17,6 +17,7 @@ export const POCKETMATE_NAV: PocketMateNavItem[] = [
 
 export function isPocketMateAppPath(pathname: string | null): boolean {
   if (!pathname) return false;
+  if (pathname.startsWith("/legal")) return true;
   return POCKETMATE_NAV.some(
     (item) => pathname === item.href || pathname.startsWith(`${item.href}/`)
   );

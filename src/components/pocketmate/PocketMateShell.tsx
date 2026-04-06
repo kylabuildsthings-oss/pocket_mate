@@ -13,7 +13,6 @@ import {
   Icon,
   IconButton,
   Text,
-  Tooltip,
   useBreakpointValue,
   useDisclosure,
   VStack,
@@ -33,7 +32,13 @@ import {
   MdShowChart,
 } from "react-icons/md";
 import { POCKETMATE_NAV } from "@/lib/pocketmateNav";
-import { PMBadge } from "./PMBadge";
+import { useModeStore } from "@/store/mode/useModeStore";
+import { ModeToggle } from "./ModeToggle";
+import { ModeAwareEffects } from "./ModeAwareEffects";
+import { PocketMateWalletStrip } from "./PocketMateWalletStrip";
+import { CelebrationHost } from "./gamification/CelebrationHost";
+import { GamificationVisitTracker } from "./gamification/GamificationVisitTracker";
+import { PocketMateFooter } from "./PocketMateFooter";
 
 const iconFor = (href: string) => {
   switch (href) {
@@ -97,12 +102,17 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
 
 function titleForPath(pathname: string | null): string {
   if (!pathname) return "PocketMate";
-  const item = POCKETMATE_NAV.find((n) => pathname === n.href || pathname.startsWith(`${n.href}/`));
+  if (pathname.startsWith("/legal/risk")) return "Risk disclosures";
+  if (pathname.startsWith("/legal/support")) return "Support";
+  const item = POCKETMATE_NAV.find(
+    (n) => pathname === n.href || pathname.startsWith(`${n.href}/`)
+  );
   return item?.label ?? "PocketMate";
 }
 
 export function PocketMateShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const mode = useModeStore((s) => s.mode);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isMobile = useBreakpointValue({ base: true, md: false });
   const pageTitle = titleForPath(pathname);
@@ -123,7 +133,9 @@ export function PocketMateShell({ children }: { children: React.ReactNode }) {
           LEARN · TRADE · BUILD
         </Text>
       </Box>
-      <NavLinks onNavigate={isMobile ? onClose : undefined} />
+      <Box as="nav" aria-label="Primary navigation">
+        <NavLinks onNavigate={isMobile ? onClose : undefined} />
+      </Box>
       <Box mt="auto" pt={6} px={2}>
         <Text fontSize="xs" color="pm.muted">
           The Sovereign Ledger
@@ -142,6 +154,9 @@ export function PocketMateShell({ children }: { children: React.ReactNode }) {
       color="pm.text"
       fontFamily="var(--font-pm-body), system-ui, sans-serif"
     >
+      <ModeAwareEffects />
+      <GamificationVisitTracker />
+      <CelebrationHost />
       {!isMobile ? (
         <Box
           as="aside"
@@ -179,9 +194,18 @@ export function PocketMateShell({ children }: { children: React.ReactNode }) {
                   color="pm.text"
                   onClick={onOpen}
                 />
-                <Drawer isOpen={isOpen} placement="left" onClose={onClose} size="xs">
+                <Drawer
+                  isOpen={isOpen}
+                  placement="left"
+                  onClose={onClose}
+                  size="xs"
+                >
                   <DrawerOverlay />
-                  <DrawerContent bg="pm.surface" borderRightWidth="1px" borderColor="pm.border">
+                  <DrawerContent
+                    bg="pm.surface"
+                    borderRightWidth="1px"
+                    borderColor="pm.border"
+                  >
                     <DrawerCloseButton color="pm.muted" />
                     <DrawerHeader
                       color="pm.text"
@@ -202,23 +226,25 @@ export function PocketMateShell({ children }: { children: React.ReactNode }) {
               >
                 {pageTitle}
               </Heading>
-              <Text fontSize="xs" color="pm.muted" display={{ base: "none", sm: "block" }}>
+              <Text
+                fontSize="xs"
+                color="pm.muted"
+                display={{ base: "none", sm: "block" }}
+              >
                 Student DeFi workspace
               </Text>
             </Box>
           </Flex>
           <Flex align="center" gap={3}>
-            <Tooltip label="Demo/Live toggle ships in the next milestone" hasArrow>
-              <Box>
-                <PMBadge tone="primary">Demo</PMBadge>
-              </Box>
-            </Tooltip>
-            <ConnectButton />
+            <ModeToggle />
+            {mode === "live" ? <ConnectButton /> : null}
           </Flex>
         </Flex>
+        <PocketMateWalletStrip />
         <Box as="main" flex="1" px={{ base: 4, md: 8 }} py={{ base: 6, md: 8 }}>
           {children}
         </Box>
+        <PocketMateFooter />
       </Flex>
     </Flex>
   );

@@ -27,6 +27,7 @@
       "@/utils/*": ["src/utils/*"],
       "@/services/*": ["src/services/*"],
       "@/lib/*": ["src/lib/*"],
+      "@/hooks/*": ["src/hooks/*"],
       "@/BFF/*": ["src/BFF/*"],
       "@/models/*": ["src/models/*"],
       "@/blockchain/*": ["src/blockchain/*"],
