@@ -22,18 +22,25 @@ export const getSigner = async (provider?: any) => {
   return signer;
 };
 
-export const getSignerAddress = async () => {
-  //@ts-ignore
-  const provider = new ethers.BrowserProvider(window.ethereum);
-  const signer = await provider.getSigner();
-  const signerAddress = await signer.getAddress();
-  return signerAddress;
+/**
+ * Resolves the connected EIP-1193 wallet address, or `null` if no extension
+ * is present or the user has not authorized an account (e.g. MetaMask missing).
+ */
+export const getSignerAddress = async (): Promise<string | null> => {
+  if (typeof window === "undefined") return null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const eth = (window as any).ethereum as any;
+  if (!eth) return null;
+  try {
+    const provider = new ethers.BrowserProvider(eth);
+    const signer = await provider.getSigner();
+    return await signer.getAddress();
+  } catch {
+    return null;
+  }
 };
 
-export const isWalletConnected = async () => {
+export const isWalletConnected = async (): Promise<boolean> => {
   const connectedAccount = await getSignerAddress();
-  if (!connectedAccount) {
-    return false;
-  }
-  return true;
+  return Boolean(connectedAccount);
 };

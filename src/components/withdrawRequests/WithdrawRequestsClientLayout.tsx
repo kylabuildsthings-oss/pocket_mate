@@ -108,6 +108,7 @@ export const WithdrawRequestsClientLayout = ({
     });
 
     const address = await getSignerAddress();
+    if (!address) return;
     await deleteRequest(request._id);
     const accountId = request?.accountId;
 

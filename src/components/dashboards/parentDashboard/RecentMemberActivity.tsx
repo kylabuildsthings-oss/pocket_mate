@@ -46,7 +46,9 @@ export const RecentMemberActivity = () => {
   /* This useEffect is used to get the recent activity for the user upon page load */
   useEffect(() => {
     const getData = async () => {
-      const user = await getUserByWalletAddress(await getSignerAddress());
+      const addr = await getSignerAddress();
+      if (!addr) return;
+      const user = await getUserByWalletAddress(addr);
       const activity = await getActivityByAccount(user?.accountId!);
 
       await normaliseActivity(activity, user);
@@ -57,7 +59,9 @@ export const RecentMemberActivity = () => {
   /* This useEffect is used to update the recent activity when a user deposits or mints */
   useEffect(() => {
     const getData = async () => {
-      const user = await getUserByWalletAddress(await getSignerAddress());
+      const addr = await getSignerAddress();
+      if (!addr) return;
+      const user = await getUserByWalletAddress(addr);
       await normaliseActivity(recentActivity, user);
       setRecentActivity([]);
     };

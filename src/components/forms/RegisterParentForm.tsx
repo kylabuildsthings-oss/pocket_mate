@@ -74,6 +74,7 @@ export const RegisterParentForm = ({ onClose }: { onClose: () => void }) => {
 
   const sendEmailConfirmation = async () => {
     const address = await getSignerAddress();
+    if (!address) return false;
     try {
       const payload = {
         username,
@@ -105,6 +106,13 @@ export const RegisterParentForm = ({ onClose }: { onClose: () => void }) => {
     }
 
     const address = await getSignerAddress();
+    if (!address) {
+      toast({
+        description: "Connect a wallet to continue.",
+        status: "error",
+      });
+      return;
+    }
     const wallet = address;
 
     const accountPayload = {

@@ -77,6 +77,7 @@ export const DeleteLocker = ({
     });
 
     const address = await getSignerAddress();
+    if (!address) return;
     const user = await getUserByWalletAddress(address);
     const accountId = user?.accountId;
 

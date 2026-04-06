@@ -42,7 +42,9 @@ const Permissions = () => {
 
   useEffect(() => {
     const init = async () => {
-      const user = await getUserByWalletAddress(await getSignerAddress());
+      const addr = await getSignerAddress();
+      if (!addr) return;
+      const user = await getUserByWalletAddress(addr);
       setUser(user);
     };
     init();

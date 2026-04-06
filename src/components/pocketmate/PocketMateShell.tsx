@@ -25,6 +25,7 @@ import {
   MdConstruction,
   MdDashboard,
   MdGroups,
+  MdInfo,
   MdMenu,
   MdPerson,
   MdSchool,
@@ -54,6 +55,8 @@ const iconFor = (href: string) => {
       return MdBook;
     case "/hub":
       return MdGroups;
+    case "/about":
+      return MdInfo;
     case "/profile":
       return MdPerson;
     case "/settings":
@@ -102,6 +105,7 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
 
 function titleForPath(pathname: string | null): string {
   if (!pathname) return "PocketMate";
+  if (pathname.startsWith("/about")) return "About";
   if (pathname.startsWith("/legal/risk")) return "Risk disclosures";
   if (pathname.startsWith("/legal/support")) return "Support";
   const item = POCKETMATE_NAV.find(

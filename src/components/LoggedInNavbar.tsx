@@ -22,8 +22,9 @@ export default function LoggedInNavBar() {
 
   useEffect(() => {
     const init = async () => {
-      // Get the user details
-      const user = await getUserByWalletAddress(await getSignerAddress());
+      const addr = await getSignerAddress();
+      if (!addr) return;
+      const user = await getUserByWalletAddress(addr);
       setUser(user);
     };
     init();

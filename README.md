@@ -11,7 +11,7 @@ Repository: [github.com/kylabuildsthings-oss/pocket_mate](https://github.com/kyl
 | **Learn**     | Curated lessons, glossary-linked terms, quizzes, XP and badges (great for onboarding).                         |
 | **Trade**     | Trade flows that respect **demo** vs **live** mode (with an explicit switch and risk acknowledgment for live). |
 | **Build**     | Strategy templates, mock backtests, saved strategies, and hooks for future automation workflows.               |
-| **Community** | In-app **hub** (`/hub`) for feeds and leaderboards; the older **`/community`** page is optional legacy chrome. |
+| **Community** | In-app **hub** (`/hub`) for strategy feed, discussion previews, and leaderboards.                              |
 
 This README describes what exists in **this** codebase today. Roadmap items belong in **Issues**, not here.
 
@@ -46,4 +46,10 @@ See **[SECURITY.md](./SECURITY.md)** for vulnerability reporting (GitHub securit
 
 ---
 
-MIT License — see [LICENSE](./LICENSE).
+## License
+
+This project is distributed under the **[MIT License](./LICENSE)**.
+
+The `LICENSE` file retains **Copyright (c) 2023 DefiKids** for the original upstream codebase your work may derive from, and **Copyright (c) 2026 PocketMate contributors** for changes and material contributed to this fork. Keeping both lines is standard for forks: it acknowledges prior authorship and documents who holds rights in newer work. If you need a single copyright holder for your organization, have qualified counsel review—it is not something this README can decide for you.
+
+MIT License — full text in [LICENSE](./LICENSE).

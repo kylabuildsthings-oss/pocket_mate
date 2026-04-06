@@ -55,7 +55,12 @@ export default function LandingNavbar() {
     const init = async () => {
       const isConnected = await isWalletConnected();
       setWalletConnected(isConnected);
-      const user = await getUserByWalletAddress(await getSignerAddress());
+      const addr = await getSignerAddress();
+      if (!addr) {
+        setIsRegistered(false);
+        return;
+      }
+      const user = await getUserByWalletAddress(addr);
 
       if (user.error) {
         setIsRegistered(false);

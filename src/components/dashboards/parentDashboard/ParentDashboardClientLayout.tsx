@@ -62,7 +62,9 @@ const ParentDashboardClientLayout = () => {
   });
 
   const reloadUserData = useCallback(async () => {
-    const parent = await getUserByWalletAddress(await getSignerAddress());
+    const addr = await getSignerAddress();
+    if (!addr) return;
+    const parent = await getUserByWalletAddress(addr);
     setParent(parent);
   }, []);
 
@@ -142,6 +144,7 @@ const ParentDashboardClientLayout = () => {
       provider
     );
     const userAddress = await getSignerAddress();
+    if (!userAddress) return;
     const balance = await defiDollarsInstance?.getStableTokenBalance(
       userAddress
     );
@@ -166,7 +169,9 @@ const ParentDashboardClientLayout = () => {
       const valid = checkCurrentChain();
       if (!valid) return;
 
-      const user = await getUserByWalletAddress(await getSignerAddress());
+      const addr = await getSignerAddress();
+      if (!addr) return;
+      const user = await getUserByWalletAddress(addr);
       setParent(user);
 
       //@ts-ignore

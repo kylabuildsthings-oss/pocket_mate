@@ -75,6 +75,7 @@ export const TokenLockersMemberLayout = ({
       //@ts-ignore
       const provider = new ethers.BrowserProvider(window.ethereum);
       const wallet = await getSignerAddress();
+      if (!wallet) return;
 
       const tokenLockerInstance = await TokenLockerContract.fromProvider(
         provider
