@@ -1,6 +1,7 @@
 "use client";
 
-import { Box, Flex, Heading, Text, Image } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, Image, Button } from "@chakra-ui/react";
+import NextLink from "next/link";
 
 const ComingSoon = () => {
   const Logo = () => {
@@ -27,6 +28,9 @@ const ComingSoon = () => {
         <Text my={5} color="gray" fontSize="lg">
           Base app is running — next up: PocketMate shell and Demo/Live mode.
         </Text>
+        <Button as={NextLink} href="/dashboard" colorScheme="purple" size="lg">
+          Open PocketMate dashboard
+        </Button>
       </Flex>
     </Box>
   );

@@ -26,19 +26,28 @@ Current checkpoint:
 - After `npm run dev`, open `http://localhost:3000` (or the port Next prints if 3000 is busy). You should see the PocketMate “Coming soon” screen, not a blank page.
 - Gate 0 passes once the home route renders without compile/runtime errors.
 
-- [ ] 2) Security + Environment Foundation
-  - [ ] Create `.env.example` with required keys/placeholders
-  - [ ] Ensure `.env*` is ignored in `.gitignore`
-  - [ ] Add server-side env validation (`src/lib/env.ts`)
-  - [ ] Add secure headers/CSP in config or middleware
-  - [ ] Add API input validation and rate limits on write endpoints
-  - [ ] Add audit logging for high-risk actions (Live toggle, wallet connect, strategy actions)
+- [x] 2) Security + Environment Foundation
+  - [x] Create `.env.example` with required keys/placeholders
+  - [x] Ensure `.env*` is ignored in `.gitignore`
+  - [x] Add server-side env validation (`src/lib/env.ts`)
+  - [x] Add secure headers/CSP in config or middleware
+  - [x] Add API input validation and rate limits on write endpoints
+  - [x] Add audit logging for high-risk actions (Live toggle, wallet connect, strategy actions)
 
-- [ ] 3) App Shell + Navigation
-  - [ ] Build global layout (sidebar/top nav) aligned to design direction
-  - [ ] Add routes: dashboard, learn, trade, build, glossary, community, profile, settings
-  - [ ] Implement theme tokens (dark navy + primary/secondary/tertiary accents)
-  - [ ] Build reusable UI primitives (cards, badges, stats, table, tabs, modals)
+Security foundation checkpoint:
+- Added `src/lib/env.ts` and `src/lib/apiSecurity.ts` (method guards, required-field validation, in-memory rate limiting, audit logs).
+- Added root `middleware.ts` with CSP and baseline security headers.
+- Wrapped high-risk write APIs (`/api/emails/*` and key `/api/mongo/*` create/edit/delete routes) with security middleware.
+
+- [x] 3) App Shell + Navigation
+  - [x] Build global layout (sidebar/top nav) aligned to design direction
+  - [x] Add routes: dashboard, learn, trade, build, glossary, profile, settings + **Community hub at `/hub`** (legacy DefiKids page remains at `/community`)
+  - [x] Implement theme tokens (dark navy + primary/secondary/tertiary accents)
+  - [x] Build reusable UI primitives (cards, badges, stats, table, tabs, modals)
+
+Phase 3 checkpoint:
+- Open `http://localhost:3010/dashboard` (or your dev port) to see the PocketMate shell.
+- Home `/` still shows the Coming Soon gate with a button into the dashboard.
 
 - [ ] 4) Demo/Live Mode Core (Critical Path)
   - [ ] Build global mode store (default = Demo)
@@ -154,7 +163,7 @@ Current checkpoint:
   - `http://localhost:3000/learn`
   - `http://localhost:3000/trade`
   - `http://localhost:3000/build`
-  - `http://localhost:3000/community`
+  - `http://localhost:3000/hub`
 - Approval status: `Pending`
 
 ### Gate 2 - Demo/Live Core Approved?
@@ -235,7 +244,7 @@ Use this as your recurring check cadence while building:
 - Every 60-90 minutes:
   - Quick smoke: `http://localhost:3000/`, `/dashboard`, `/trade`
 - At each merged feature branch:
-  - Full route pass: `/learn`, `/glossary`, `/build`, `/community`, `/settings`
+  - Full route pass: `/learn`, `/glossary`, `/build`, `/hub`, `/settings`
 - At each approval gate:
   - Record short demo video or screenshots for sign-off
 - End of day:

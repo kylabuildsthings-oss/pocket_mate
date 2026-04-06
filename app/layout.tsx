@@ -3,6 +3,19 @@ import { Providers } from "./providers";
 import { ConditionalNavBars } from "@/components/ConditionalNavBars";
 import Auth from "@/components/Auth";
 import "@rainbow-me/rainbowkit/styles.css";
+import { Manrope, Space_Grotesk } from "next/font/google";
+
+const fontPmBody = Manrope({
+  subsets: ["latin"],
+  variable: "--font-pm-body",
+  display: "swap",
+});
+
+const fontPmHeading = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-pm-heading",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "PocketMate",
@@ -17,7 +30,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning={true}>
+    <html
+      lang="en"
+      suppressHydrationWarning={true}
+      className={`${fontPmBody.variable} ${fontPmHeading.variable}`}
+    >
       <body suppressHydrationWarning={true}>
         <Providers>
           <Auth />

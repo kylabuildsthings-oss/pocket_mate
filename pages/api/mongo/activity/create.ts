@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Activity, IActivity } from "@/models/Activity";
 import dbConnect from "@/services/mongo/dbConnect";
+import { withSecureApi } from "@/lib/apiSecurity";
 
-export default async function handler(
+async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -18,3 +19,12 @@ export default async function handler(
     });
   }
 }
+
+export default withSecureApi(
+  {
+    methods: ["POST"],
+    rateLimit: { windowMs: 60_000, max: 40 },
+    auditEvent: "mongo.activity.create",
+  },
+  handler
+);

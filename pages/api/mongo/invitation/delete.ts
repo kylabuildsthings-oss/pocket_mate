@@ -1,8 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { Invitation } from "@/models/Invitation";
 import dbConnect from "@/services/mongo/dbConnect";
+import { withSecureApi, validateRequiredFields } from "@/lib/apiSecurity";
 
-export default async function handler(
+async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -21,3 +22,13 @@ export default async function handler(
     res.status(500).json({ error: "Something went wrong" });
   }
 }
+
+export default withSecureApi(
+  {
+    methods: ["POST"],
+    rateLimit: { windowMs: 60_000, max: 20 },
+    auditEvent: "mongo.invitation.delete",
+    validateBody: validateRequiredFields(["id"]),
+  },
+  handler
+);

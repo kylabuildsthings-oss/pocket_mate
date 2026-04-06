@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { WithdrawRequest, IWithdrawRequest } from "@/models/WithdrawRequest";
 import dbConnect from "@/services/mongo/dbConnect";
+import { withSecureApi, validateRequiredFields } from "@/lib/apiSecurity";
 
-export default async function handler(
+async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -19,3 +20,13 @@ export default async function handler(
     });
   }
 }
+
+export default withSecureApi(
+  {
+    methods: ["POST"],
+    rateLimit: { windowMs: 60_000, max: 30 },
+    auditEvent: "mongo.withdraw-request.create",
+    validateBody: validateRequiredFields(["accountId", "amount"]),
+  },
+  handler
+);

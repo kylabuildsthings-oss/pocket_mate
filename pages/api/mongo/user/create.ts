@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { User, IUser } from "@/models/User";
 import dbConnect from "@/services/mongo/dbConnect";
+import { withSecureApi, validateRequiredFields } from "@/lib/apiSecurity";
 
-export default async function handler(
+async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -17,3 +18,13 @@ export default async function handler(
       .json({ error: `Error saving user: ${(error as Error).message}` });
   }
 }
+
+export default withSecureApi(
+  {
+    methods: ["POST"],
+    rateLimit: { windowMs: 60_000, max: 30 },
+    auditEvent: "mongo.user.create",
+    validateBody: validateRequiredFields(["wallet", "username"]),
+  },
+  handler
+);

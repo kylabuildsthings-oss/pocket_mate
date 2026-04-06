@@ -1,15 +1,10 @@
 import _mongoose, { connect } from "mongoose";
 import dotenv from "dotenv";
+import { getRequiredEnv } from "@/lib/env";
 
 dotenv.config();
 
-const MONGODB_URI = process.env.MONGODB_URI;
-
-if (!MONGODB_URI) {
-  throw new Error(
-    "Please define the MONGODB_URI environment variable inside .env.local"
-  );
-}
+const MONGODB_URI = getRequiredEnv("MONGODB_URI");
 
 interface GlobalMongoose {
   conn: typeof _mongoose | null;

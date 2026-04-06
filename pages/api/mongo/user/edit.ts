@@ -2,8 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { User } from "@/models/User";
 import dbConnect from "@/services/mongo/dbConnect";
 import mongoose from "mongoose";
+import { withSecureApi, validateRequiredFields } from "@/lib/apiSecurity";
 
-export default async function handler(
+async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -25,3 +26,13 @@ export default async function handler(
     });
   }
 }
+
+export default withSecureApi(
+  {
+    methods: ["POST"],
+    rateLimit: { windowMs: 60_000, max: 40 },
+    auditEvent: "mongo.user.edit",
+    validateBody: validateRequiredFields(["wallet"]),
+  },
+  handler
+);

@@ -1,8 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import inviteMemberHTML from "@/data/emails/inviteMember";
 import sgMail, { MailDataRequired } from "@sendgrid/mail";
+import { getRequiredEnv } from "@/lib/env";
+import { withSecureApi, validateRequiredFields } from "@/lib/apiSecurity";
 
-export default async function inviteMember(
+async function inviteMember(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -13,7 +15,7 @@ export default async function inviteMember(
       familyName: string;
     };
 
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY || "");
+    sgMail.setApiKey(getRequiredEnv("SENDGRID_API_KEY"));
     const msg = {
       to: email,
       from: process.env.SENDGRID_TRANSPORTER_EMAIL_ADDRESS,
@@ -37,3 +39,13 @@ export default async function inviteMember(
     res.status(500).json({ error: "Something went wrong" });
   }
 }
+
+export default withSecureApi(
+  {
+    methods: ["POST"],
+    rateLimit: { windowMs: 60_000, max: 20 },
+    auditEvent: "email.invite.requested",
+    validateBody: validateRequiredFields(["token", "email", "familyName"]),
+  },
+  inviteMember
+);

@@ -2,8 +2,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { Account, IAccount } from "@/models/Account";
 import { User } from "@/models/User";
 import dbConnect from "@/services/mongo/dbConnect";
+import { withSecureApi } from "@/lib/apiSecurity";
 
-export default async function handler(
+async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -25,3 +26,12 @@ export default async function handler(
       .json({ error: `Error saving account: ${(error as Error).message}` });
   }
 }
+
+export default withSecureApi(
+  {
+    methods: ["POST"],
+    rateLimit: { windowMs: 60_000, max: 30 },
+    auditEvent: "mongo.account.create",
+  },
+  handler
+);

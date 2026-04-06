@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Invitation, IInvitation } from "@/models/Invitation";
 import dbConnect from "@/services/mongo/dbConnect";
+import { withSecureApi, validateRequiredFields } from "@/lib/apiSecurity";
 
-export default async function handler(
+async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -29,3 +30,13 @@ export default async function handler(
     });
   }
 }
+
+export default withSecureApi(
+  {
+    methods: ["POST"],
+    rateLimit: { windowMs: 60_000, max: 30 },
+    auditEvent: "mongo.invitation.create",
+    validateBody: validateRequiredFields(["accountId", "date", "email", "token"]),
+  },
+  handler
+);

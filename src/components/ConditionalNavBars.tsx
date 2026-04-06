@@ -8,6 +8,7 @@ import { useAuthStore } from "@/store/auth/authStore";
 import { shallow } from "zustand/shallow";
 import { useDisclosure, Box, useBreakpointValue } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
+import { isPocketMateAppPath } from "@/lib/pocketmateNav";
 
 export const ConditionalNavBars = () => {
   const isMobileSize = useBreakpointValue({
@@ -37,6 +38,7 @@ export const ConditionalNavBars = () => {
     if (pathname === "/") return true;
     if (pathname?.startsWith("/member-invite")) return true;
     if (pathname?.startsWith("/confirm-email")) return true;
+    if (isPocketMateAppPath(pathname || null)) return true;
 
     return false;
   };
