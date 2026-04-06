@@ -19,6 +19,8 @@ import { useMemo, useState } from "react";
 import { MdReply, MdThumbDown, MdThumbUp } from "react-icons/md";
 import { ReportAbuseModal } from "./ReportAbuseModal";
 
+const bodyFont = "var(--font-pm-body), system-ui, sans-serif";
+
 export function CommentThread({ strategyId }: { strategyId: string }) {
   const comments = useCommunityStore((s) => s.comments);
   const commentVotes = useCommunityStore((s) => s.commentVotes);
@@ -52,10 +54,10 @@ export function CommentThread({ strategyId }: { strategyId: string }) {
   return (
     <VStack align="stretch" spacing={4}>
       <Flex align="center" justify="space-between" flexWrap="wrap" gap={2}>
-        <Text fontWeight="semibold" color="pm.text">
+        <Text fontWeight="semibold" color="pm.text" fontFamily={bodyFont}>
           Discussion
         </Text>
-        <Text fontSize="xs" color="pm.muted">
+        <Text fontSize="xs" color="pm.muted" fontFamily={bodyFont}>
           {COMMENT_COOLDOWN_MS / 1000}s cooldown · {COMMENT_MAX_LEN} char max ·
           one reply depth
         </Text>

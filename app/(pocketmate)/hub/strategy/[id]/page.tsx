@@ -22,6 +22,8 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useCallback } from "react";
 
+const bodyFont = "var(--font-pm-body), system-ui, sans-serif";
+
 export default function HubStrategyPage() {
   const params = useParams();
   const id = typeof params?.id === "string" ? params.id : "";
@@ -53,10 +55,15 @@ export default function HubStrategyPage() {
   if (!post) {
     return (
       <VStack align="stretch" spacing={6} py={8}>
-        <Heading size="md" color="pm.text">
+        <Heading
+          size="md"
+          color="pm.text"
+          fontFamily={bodyFont}
+          fontWeight="bold"
+        >
           Strategy not found
         </Heading>
-        <Text color="pm.muted">
+        <Text color="pm.muted" fontFamily={bodyFont}>
           This feed id is not in the starter community list.
         </Text>
         <Button as={Link} href="/hub" colorScheme="purple" w="fit-content">
@@ -68,7 +75,7 @@ export default function HubStrategyPage() {
 
   return (
     <VStack align="stretch" spacing={6}>
-      <Breadcrumb fontSize="sm" color="pm.muted">
+      <Breadcrumb fontSize="sm" color="pm.muted" sx={{ fontFamily: bodyFont }}>
         <BreadcrumbItem>
           <BreadcrumbLink as={Link} href="/hub">
             Hub
@@ -86,7 +93,12 @@ export default function HubStrategyPage() {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Heading size="md" color="pm.text">
+        <Heading
+          size="lg"
+          color="pm.text"
+          fontFamily={bodyFont}
+          fontWeight="bold"
+        >
           {post.title}
         </Heading>
         <Box display="flex" gap={2} flexWrap="wrap" alignItems="center">
@@ -105,21 +117,26 @@ export default function HubStrategyPage() {
         <VStack align="stretch" spacing={3}>
           <Box display="flex" flexWrap="wrap" gap={2} alignItems="center">
             <PMBadge tone="primary">{post.tag}</PMBadge>
-            <Text fontSize="sm" color="pm.muted">
+            <Text fontSize="sm" color="pm.muted" fontFamily={bodyFont}>
               {post.author} · {post.university} · updated {post.updatedAt}
             </Text>
           </Box>
-          <Text fontSize="sm" color="pm.muted" lineHeight="short">
+          <Text
+            fontSize="sm"
+            color="pm.muted"
+            lineHeight="short"
+            fontFamily={bodyFont}
+          >
             {post.summary}
           </Text>
           <SimpleGrid columns={{ base: 2, md: 4 }} spacing={3}>
-            <Text fontSize="sm" color="pm.text">
+            <Text fontSize="sm" color="pm.text" fontFamily={bodyFont}>
               Sim return <strong>{post.simulatedReturnPct}%</strong>
             </Text>
-            <Text fontSize="sm" color="pm.text">
+            <Text fontSize="sm" color="pm.text" fontFamily={bodyFont}>
               Sharpe <strong>{post.simulatedSharpe}</strong>
             </Text>
-            <Text fontSize="sm" color="pm.text">
+            <Text fontSize="sm" color="pm.text" fontFamily={bodyFont}>
               Template <strong>{post.templateId}</strong>
             </Text>
           </SimpleGrid>
