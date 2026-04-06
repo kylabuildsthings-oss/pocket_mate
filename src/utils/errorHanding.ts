@@ -1,10 +1,9 @@
-import { AlertProps, AlertStatus } from "@chakra-ui/alert";
+import type { UseToastOptions } from "@chakra-ui/react";
 
-interface ToastProps {
-  title: string;
-  description: string;
-  status: AlertStatus;
-}
+type TransactionToastArgs = Pick<
+  UseToastOptions,
+  "title" | "description" | "status"
+>;
 
 export const transactionErrors = (e: Error) => {
   console.error("transactionErrors", e.message);
@@ -14,7 +13,7 @@ export const transactionErrors = (e: Error) => {
       title: "Transaction Error",
       description: "User rejected transaction",
       status: "error",
-    } as ToastProps;
+    } as TransactionToastArgs;
   }
 
   if (e.message.includes("User denied transaction signature")) {
@@ -22,12 +21,12 @@ export const transactionErrors = (e: Error) => {
       title: "Transaction Error",
       description: "User rejected transaction",
       status: "error",
-    } as ToastProps;
+    } as TransactionToastArgs;
   }
 
   return {
     title: "Error",
     description: "Network error",
     status: "error",
-  } as ToastProps;
+  } as TransactionToastArgs;
 };

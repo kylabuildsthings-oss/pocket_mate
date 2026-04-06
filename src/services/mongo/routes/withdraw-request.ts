@@ -1,6 +1,5 @@
-import { IWithdrawRequest } from "@/models/WithdrawRequest";
 import axios from "axios";
-import mongoose from "mongoose";
+import type { WithdrawRequestCreatePayload } from "@/types/withdrawRequest";
 
 const config = {
   headers: {
@@ -9,7 +8,9 @@ const config = {
 };
 const HOST = process.env.NEXT_PUBLIC_HOST || "";
 
-export const createWithdrawRequest = async (values: any) => {
+export const createWithdrawRequest = async (
+  values: WithdrawRequestCreatePayload
+) => {
   try {
     const { data } = await axios.post(
       `${HOST}/api/mongo/withdraw-request/create`,
@@ -23,24 +24,23 @@ export const createWithdrawRequest = async (values: any) => {
   }
 };
 
-export const getAllWithdrawRequestsByAccountId = async (
-  accountId: mongoose.Schema.Types.ObjectId
-) => {
+export const getAllWithdrawRequestsByAccountId = async (accountId: string) => {
   try {
     const { data } = await axios.get(
       `${HOST}/api/mongo/withdraw-request/getAll`
     );
 
-    return data.filter((withdrawRequest: IWithdrawRequest) => {
-      return withdrawRequest.accountId === accountId;
-    });
+    return data.filter(
+      (withdrawRequest: { accountId?: unknown }) =>
+        String(withdrawRequest.accountId) === String(accountId)
+    );
   } catch (error) {
     console.log(error);
     return error;
   }
 };
 
-export const deleteRequest = async (id: mongoose.Schema.Types.ObjectId) => {
+export const deleteRequest = async (id: string) => {
   try {
     const { data } = await axios.post(
       `${HOST}/api/mongo/withdraw-request/delete`,

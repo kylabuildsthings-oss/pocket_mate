@@ -1,5 +1,4 @@
 import axios from "axios";
-import mongoose from "mongoose";
 
 const config = {
   headers: {
@@ -32,7 +31,7 @@ export const getAllInvitations = async () => {
   }
 };
 
-export const deleteInvitation = async (id: mongoose.Schema.Types.ObjectId) => {
+export const deleteInvitation = async (id: string) => {
   try {
     const { data } = await axios.post(
       `${HOST}/api/mongo/invitation/delete`,
@@ -46,10 +45,7 @@ export const deleteInvitation = async (id: mongoose.Schema.Types.ObjectId) => {
   }
 };
 
-export const getInvitation = async (
-  accountId: mongoose.Schema.Types.ObjectId,
-  email: string
-) => {
+export const getInvitation = async (accountId: string, email: string) => {
   try {
     const { data } = await axios.get(
       `${HOST}/api/mongo/invitation/get?accountId=${accountId}&email=${email}`

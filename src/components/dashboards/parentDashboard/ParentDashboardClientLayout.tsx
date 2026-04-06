@@ -129,7 +129,9 @@ const ParentDashboardClientLayout = () => {
   //=============================================================================
 
   const getMemberWithdrawRequests = useCallback(async (user: User) => {
-    const requests = await getAllWithdrawRequestsByAccountId(user.accountId!);
+    const requests = await getAllWithdrawRequestsByAccountId(
+      String(user.accountId!)
+    );
     setWithdrawRequests(requests.length);
   }, []);
 

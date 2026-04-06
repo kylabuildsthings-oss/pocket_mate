@@ -19,7 +19,7 @@ import {
 import { Explaination, StepperContext } from "@/data-schema/enums";
 import { transactionErrors } from "@/utils/errorHanding";
 import { TransactionResponse } from "@ethersproject/abstract-provider";
-import { ethers, SignatureLike } from "ethers";
+import { ethers, type Eip1193Provider, SignatureLike } from "ethers";
 import NextLink from "next/link";
 import DefiDollarsContract from "@/blockchain/DefiDollars";
 import { createPermitMessage } from "@/utils/permit";
@@ -31,9 +31,11 @@ import { createActivity } from "@/services/mongo/routes/activity";
 import { useAuthStore } from "@/store/auth/authStore";
 import shallow from "zustand/shallow";
 import { createWithdrawRequest } from "@/services/mongo/routes/withdraw-request";
-import mongoose from "mongoose";
 import axios from "axios";
-import { WithdrawRequestStatus } from "@/src/models/WithdrawRequest";
+import {
+  WithdrawRequestStatus,
+  type WithdrawRequestCreatePayload,
+} from "@/types/withdrawRequest";
 
 type PermitResult = {
   data?: SignatureLike;
@@ -41,18 +43,7 @@ type PermitResult = {
   error?: string;
 };
 
-type WithdrawRequestPayload = {
-  accountId: mongoose.Schema.Types.ObjectId;
-  spender: string;
-  owner: string;
-  value: string;
-  deadline: number;
-  v: number;
-  r: string;
-  s: string;
-  requestDate: number;
-  status: WithdrawRequestStatus;
-};
+type WithdrawRequestPayload = WithdrawRequestCreatePayload;
 
 export const WithdrawDefiDollars = ({
   onClose,
@@ -125,8 +116,11 @@ export const WithdrawDefiDollars = ({
       String(+amountToWithdraw.trim())
     );
 
-    // @ts-ignore
-    const provider = new ethers.BrowserProvider(window.ethereum);
+    const w = window as Window & { ethereum?: Eip1193Provider };
+    if (!w.ethereum) {
+      throw new Error("No Ethereum provider found");
+    }
+    const provider = new ethers.BrowserProvider(w.ethereum);
     const signer = await provider.getSigner();
     const defiDollarsInstance = await DefiDollarsContract.fromProvider(
       provider
@@ -159,8 +153,8 @@ export const WithdrawDefiDollars = ({
     const parent = await getParentDetails(user!);
     const now = convertTimestampToSeconds(Date.now());
 
-    const payload = {
-      accountId: user?.accountId!,
+    const payload: WithdrawRequestCreatePayload = {
+      accountId: String(user?.accountId!),
       spender: parent?.wallet!,
       owner: user?.wallet!,
       value: amountToWithdraw,

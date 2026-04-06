@@ -17,7 +17,6 @@ import {
 import { getActivityByAccount } from "@/BFF/mongo/getActivityByAccount";
 import { IActivity } from "@/models/Activity";
 import { getFamilyMembersByAccount } from "@/BFF/mongo/getFamilyMembersByAccount";
-import { IUser } from "@/models/User";
 import { formatDateToIsoString } from "@/utils/dateTime";
 import { User } from "@/data-schema/types";
 import { useAuthStore } from "@/store/auth/authStore";
@@ -72,10 +71,10 @@ export const RecentMemberActivity = () => {
     activities: IActivity[],
     connectedUser: User
   ) => {
-    const members = (await getFamilyMembersByAccount(
+    const members = await getFamilyMembersByAccount(
       connectedUser.accountId!,
       true
-    )) as IUser[];
+    );
 
     const formattedActivity = activities.map((activity: IActivity) => {
       const member = members.find((m) => m.wallet === activity?.wallet);

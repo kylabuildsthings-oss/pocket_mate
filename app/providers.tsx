@@ -1,6 +1,7 @@
 "use client";
 
-import { CacheProvider } from "@chakra-ui/next-js";
+import type { FC, ReactNode } from "react";
+import { CacheProvider as ChakraCacheProvider } from "@chakra-ui/next-js";
 import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "@/services/chakra/theme";
 import { ColorModeScript } from "@chakra-ui/react";
@@ -28,11 +29,14 @@ const Web3Providers = dynamic(() => import("./web3-providers"), {
   ),
 });
 
+/** `@chakra-ui/next-js` CacheProvider return type is `ReactNode`, which this TS/React combo rejects as JSX; cast to a standard FC. */
+const ChakraEmotionCache = ChakraCacheProvider as FC<{ children: ReactNode }>;
+
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <CacheProvider>
+      <ChakraEmotionCache>
         <ChakraProvider
           theme={theme}
           toastOptions={{
@@ -47,7 +51,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
             <Web3Providers>{children}</Web3Providers>
           </SessionProvider>
         </ChakraProvider>
-      </CacheProvider>
+      </ChakraEmotionCache>
     </>
   );
 }

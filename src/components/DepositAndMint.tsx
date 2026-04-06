@@ -35,7 +35,7 @@ import { createActivity } from "@/services/mongo/routes/activity";
 import { convertTimestampToSeconds } from "@/utils/dateTime";
 import { IActivity } from "@/models/Activity";
 import { stable_coin_symbol } from "@/config";
-import { getSigner, getSignerAddress } from "@/blockchain/utils";
+import { getSignerAddress } from "@/blockchain/utils";
 import { GOERLI_DK_STABLETOKEN_ADDRESS } from "@/blockchain/contract-addresses";
 import { stableTokenABI } from "@/blockchain/artifacts/stable-token";
 import DefiDollarsContract from "@/blockchain/DefiDollars";
@@ -133,7 +133,7 @@ export const DepositAndMint = ({
 
     //@ts-ignore
     const provider = new ethers.BrowserProvider(window.ethereum);
-    const signer = await getSigner(provider);
+    const signer = await provider.getSigner();
     const defiDollarsInstance = await DefiDollarsContract.fromProvider();
 
     const stableTokenContractInstance = new ethers.Contract(

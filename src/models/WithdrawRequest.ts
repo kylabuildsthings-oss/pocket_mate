@@ -1,10 +1,7 @@
 import mongoose, { Schema, Document, model } from "mongoose";
+import { WithdrawRequestStatus } from "@/types/withdrawRequest";
 
-export enum WithdrawRequestStatus {
-  PENDING = "pending",
-  APPROVED = "approved",
-  REJECTED = "rejected",
-}
+export { WithdrawRequestStatus } from "@/types/withdrawRequest";
 
 export interface IWithdrawRequest extends Document {
   accountId: mongoose.Schema.Types.ObjectId;

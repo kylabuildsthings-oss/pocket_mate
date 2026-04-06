@@ -57,7 +57,9 @@ export const WithdrawRequestsClientLayout = ({
 
   const getRequests = useCallback(async () => {
     const user = await getUserByWalletAddress(memberAddress);
-    const dbRequests = await getAllWithdrawRequestsByAccountId(user.accountId);
+    const dbRequests = await getAllWithdrawRequestsByAccountId(
+      String(user.accountId)
+    );
     setRequests(dbRequests);
   }, [memberAddress]);
 
@@ -109,7 +111,7 @@ export const WithdrawRequestsClientLayout = ({
 
     const address = await getSignerAddress();
     if (!address) return;
-    await deleteRequest(request._id);
+    await deleteRequest(String(request._id));
     const accountId = request?.accountId;
 
     const newActivities: IActivity[] = [];
@@ -263,7 +265,7 @@ export const WithdrawRequestsClientLayout = ({
                             size="xs"
                             colorScheme="red"
                             onClick={async () => {
-                              await deleteRequest(request._id);
+                              await deleteRequest(String(request._id));
                               await getRequests();
                               toast({
                                 title: "Withdraw Request Deleted.",

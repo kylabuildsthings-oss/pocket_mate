@@ -29,7 +29,6 @@ import { convertTimestampToSeconds } from "@/utils/dateTime";
 import jwt from "jsonwebtoken";
 import { IInvitation } from "@/models/Invitation";
 import { getInvitationsByAccount } from "@/BFF/mongo/getInvitationsByAccount";
-import mongoose from "mongoose";
 import { getSignerAddress } from "@/blockchain/utils";
 import { getUserByWalletAddress } from "@/services/mongo/routes/user";
 
@@ -94,12 +93,11 @@ export const MembersTableModal = ({
   //=============================================================================
   //                               FUNCTIONS
   //=============================================================================
-  const invitationExists = (
-    accountId: mongoose.Schema.Types.ObjectId,
-    email: string
-  ) => {
+  const invitationExists = (accountId: string, email: string) => {
     const invitation = invitations
-      .filter((invitation) => invitation.accountId === accountId)
+      .filter(
+        (invitation) => String(invitation.accountId) === String(accountId)
+      )
       .find((invitation) => invitation.email === email);
 
     if (invitation) {
@@ -139,9 +137,10 @@ export const MembersTableModal = ({
       const email = emailAddress.trim();
 
       if (userExists(email, users)) return;
-      if (invitationExists(accountId!, email)) return;
+      const accountIdStr = String(accountId!);
+      if (invitationExists(accountIdStr, email)) return;
 
-      const emailSent = await sendEmailInvite(email, wallet, accountId!);
+      const emailSent = await sendEmailInvite(email, wallet, accountIdStr);
 
       if (!emailSent) {
         toast({
@@ -179,9 +178,9 @@ export const MembersTableModal = ({
   const sendEmailInvite = async (
     email: string,
     wallet: string,
-    accountId: mongoose.Schema.Types.ObjectId
+    accountId: string
   ) => {
-    const { familyName } = await getAccount(accountId!);
+    const { familyName } = await getAccount(accountId);
 
     try {
       const body = {

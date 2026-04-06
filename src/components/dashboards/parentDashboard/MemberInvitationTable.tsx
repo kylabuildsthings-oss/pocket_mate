@@ -10,8 +10,6 @@ import {
   Box,
   Container,
 } from "@chakra-ui/react";
-import mongoose from "mongoose";
-
 const MemberInvitationTable = ({
   isMobileSize,
   invitations,
@@ -25,10 +23,10 @@ const MemberInvitationTable = ({
 }) => {
   const toast = useToast();
 
-  const removeInvitation = async (_id: mongoose.Schema.Types.ObjectId) => {
+  const removeInvitation = async (_id: string) => {
     try {
       const updatedInvitations = invitations.filter(
-        (invitation) => invitation._id !== _id
+        (invitation) => String(invitation._id) !== String(_id)
       );
       setInvitations(updatedInvitations);
 
@@ -81,7 +79,7 @@ const MemberInvitationTable = ({
               size="md"
               padding={0}
               margin={0}
-              onClick={() => removeInvitation(invitation._id)}
+              onClick={() => removeInvitation(String(invitation._id))}
             />
           </Flex>
         </Container>

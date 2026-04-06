@@ -1,6 +1,13 @@
-import { ethers } from "ethers";
+import {
+  ethers,
+  type BrowserProvider,
+  type Eip1193Provider,
+  type JsonRpcProvider,
+} from "ethers";
 
-export const connectedSigner = async (provider: any) => {
+export const connectedSigner = async (
+  provider: BrowserProvider | JsonRpcProvider
+) => {
   const signer = await provider.getSigner();
   return signer;
 };
@@ -13,7 +20,9 @@ export const readOnlyProvider = async () => {
   return alchemyProvider;
 };
 
-export const getSigner = async (provider?: any) => {
+export const getSigner = async (
+  provider?: BrowserProvider | JsonRpcProvider
+) => {
   if (!provider) {
     const readOnly = await readOnlyProvider();
     return readOnly;
@@ -28,8 +37,8 @@ export const getSigner = async (provider?: any) => {
  */
 export const getSignerAddress = async (): Promise<string | null> => {
   if (typeof window === "undefined") return null;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const eth = (window as any).ethereum as any;
+  const w = window as Window & { ethereum?: Eip1193Provider };
+  const eth = w.ethereum;
   if (!eth) return null;
   try {
     const provider = new ethers.BrowserProvider(eth);

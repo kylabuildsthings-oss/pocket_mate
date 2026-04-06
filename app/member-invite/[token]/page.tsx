@@ -181,7 +181,7 @@ const MemberInvite = () => {
       const { accountId, email } = decodedData;
       try {
         const user = await getUserByWalletAddress(address);
-        const invitation = await getInvitation(accountId!, email);
+        const invitation = await getInvitation(String(accountId!), email);
 
         if (user._id) {
           toast({
@@ -198,7 +198,7 @@ const MemberInvite = () => {
         }
 
         await createMember(decodedData);
-        await deleteInvitation(invitation._id);
+        await deleteInvitation(String(invitation._id));
 
         setInviteAccepted(true);
       } catch (error) {
