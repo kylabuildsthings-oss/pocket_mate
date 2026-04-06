@@ -1,13 +1,23 @@
-# Security Policy
+# Security policy
 
-We're working hard to make DefiKids safe and secure for everyone. Thank you for taking the time to responsibly disclose any issues you find.
+We take security seriously. Thank you for responsibly disclosing issues you find.
 
-All security bugs in DefiKids should be reported by email to security@defikids.io.
+## Reporting a vulnerability
 
-This email address is delivered to a small security team. Your email will be acknowledged within 24 hours and please be specific with the issue you have found.
+**Preferred:** use **[GitHub private vulnerability reporting](https://github.com/kylabuildsthings-oss/pocket_mate/security/advisories/new)** for this repository if it is enabled for the project.
 
-If you have not received a reply to your email within 48 hours, or have not heard from the security team for the past five days, please reach out in our [community](https://discord.gg/bDGMYNa8Ng).
+**Alternative:** email the maintainers using the security or support address documented for your **production** deployment (do not rely on third-party brand inboxes from legacy forks).
 
-Please note that our community is a public area. When escalating at this venue, please do not discuss your issue. Simply say that you’re trying to get a hold of someone from the security team.
+Include:
 
-Thank you for helping us make DefiKids more secure.
+- Description of the issue and its impact
+- Steps to reproduce (if possible)
+- Affected versions or commits (if known)
+
+Please allow time for triage; avoid posting exploitable details in public issues until maintainers agree on disclosure.
+
+## Public channels
+
+If you need to follow up and have not heard back through the private channel, you may reference that you are requesting a security contact via GitHub—**without** discussing the vulnerability itself in public.
+
+Thank you for helping keep PocketMate secure.

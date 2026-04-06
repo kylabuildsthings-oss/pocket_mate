@@ -9,7 +9,7 @@ export const POCKETMATE_NAV: PocketMateNavItem[] = [
   { href: "/trade", label: "Trade" },
   { href: "/build", label: "Build" },
   { href: "/glossary", label: "Glossary" },
-  /** DefiKids legacy page lives at `/community`; PocketMate hub uses `/hub` for now */
+  /** Legacy community page lives at `/community`; PocketMate hub uses `/hub` for now */
   { href: "/hub", label: "Community" },
   { href: "/profile", label: "Profile" },
   { href: "/settings", label: "Settings" },

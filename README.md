@@ -1,69 +1,49 @@
-![DefiKids-alt](https://github.com/defikids/defikids-dapp/assets/66887028/e7038138-8f8b-4d38-acc5-1caf6446a441)
+# PocketMate
 
-An empowering platform aimed at equipping the upcoming generation with De-Fi tools, tailored for youngsters and overseen by parents.
+**Learn. Trade. Build.** A three-surface DeFi experience for classroom and self-directed practice: structured lessons, a trade workspace with **demo** and **live** modes, and a strategy builder with backtests and saved templates.
 
-## ✨ Simplified Platform Overview
+Repository: [github.com/kylabuildsthings-oss/pocket_mate](https://github.com/kylabuildsthings-oss/pocket_mate)
 
-Discover the world of cryptocurrency with ease through the DefiKids platform. This platform is designed to guide you and your family in using crypto confidently in your daily life, and it's tailored for kids while being supervised by parents.
+## What you can do in the app
 
-## 💻 Common Challenge
+| Area          | What it is                                                                                                     |
+| ------------- | -------------------------------------------------------------------------------------------------------------- |
+| **Learn**     | Curated lessons, glossary-linked terms, quizzes, XP and badges (great for onboarding).                         |
+| **Trade**     | Trade flows that respect **demo** vs **live** mode (with an explicit switch and risk acknowledgment for live). |
+| **Build**     | Strategy templates, mock backtests, saved strategies, and hooks for future automation workflows.               |
+| **Community** | In-app **hub** (`/hub`) for feeds and leaderboards; the older **`/community`** page is optional legacy chrome. |
 
-How do you teach your children to use crypto safely and confidently.
+This README describes what exists in **this** codebase today. Roadmap items belong in **Issues**, not here.
 
-## ⚡ Our Approach
+## Tech stack
 
-Parents can establish a secure family sandbox within the platform. They allocate funds for allowances and set aside a portion for staking. This staked amount generates rewards over time.
+- **Next.js** (App Router) + **TypeScript**
+- **Chakra UI** for many surfaces; PocketMate-specific layout under `app/(pocketmate)/…`
+- Wallet / chain integration (e.g. **wagmi**), plus legacy Polygon-oriented contracts where still in use
+- **Prisma** for persistence where configured; see `prisma/` and `.env.example`
 
-An exciting feature is that funds automatically flow to the child, providing a real-time understanding of finances.
+## Run locally
 
-## 📚 De-Fi Tools for Learning
+```bash
+npm install
+npm run dev
+```
 
-Children gain access to valuable De-Fi tools like staking and time-locks. These tools introduce them to concepts like savings, interest, and compound interest.
+The dev server listens on **port 3010** (see `package.json` → `scripts.dev`). Open [http://localhost:3010](http://localhost:3010).
 
-Moreover, funds can be reserved for future purchases through time-locks, guaranteeing that children have funds accessible when needed.
+Copy **`.env.example`** → **`.env`** and fill values for your environment before using email, DB, or third-party API features.
 
-## 💌 Empowering Parents
+## Contributing
 
-Parents can activate full-access mode, enabling children to withdraw funds for use in various crypto markets. By default, withdrawals are sent to parents, who can then convert them to fiat for their children.
+Please read **[CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)** and **[CONTRIBUTING.md](./CONTRIBUTING.md)**.
 
-## 🔥Technical Architecture
+- **Bugs:** reproducible steps, version, environment; one issue per bug; search existing issues first.
+- **Discussion:** GitHub **Issues** and pull requests on this repo (there is no official Discord or separate community server linked from this project).
 
-- Contracts are deployed on the Polygon network for reduced gas fees.
-- Next.js powers the user-friendly frontend.
-- Solidity development using Forge.
-   ```
-<hr />
+## Security
 
-- Open `localhost:3000` in your browser
+See **[SECURITY.md](./SECURITY.md)** for vulnerability reporting (GitHub security advisories preferred).
 
-<!-- CONTRIBUTING -->
+---
 
-## ⚜️ Contributing
-
-Thanks for taking the time to contribute! Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make will benefit everybody and are appreciated.
-
-Before contributing, please read the Code of Conduct [here](./CODE_OF_CONDUCT.md).
-
-Please try to create bug reports that are:
-
-- <i>Reproducible:</i> Include steps to reproduce the problem.
-- <i>Specific</i> Include as much detail as possible: which version, what environment, etc.
-- <i>Unique:</i> Do not duplicate existing opened issues.
-- <i>Scoped to a Single Bug</i> One bug per report.
-
-[Contributing Guide](https://github.com/defikids/.github/blob/main/profile/CONTRIBUTING.md)
-
-### Steps
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 💪 Community
-
-Join our [Discord Community](https://discord.gg/bDGMYNa8Ng) of engaged individuals looking to teach their kids about crypto
-
-Follow us on [Twitter](https://twitter.com/defikids_)
-
+MIT License — see [LICENSE](./LICENSE).

@@ -13,7 +13,7 @@ const SplashText = () => {
   return (
     <Flex
       as="section"
-      id="DefiKids"
+      id="PocketMate"
       direction="column"
       align="center"
       height="100vh"

@@ -5,7 +5,7 @@ const globalForPrisma = globalThis as unknown as {
 };
 
 /**
- * Returns null when `DATABASE_URL` is unset so the rest of the app (Mongo DefiKids) still boots.
+ * Returns null when `DATABASE_URL` is unset so the rest of the app still boots without DB.
  */
 export function getPrisma(): PrismaClient | null {
   const url = process.env.DATABASE_URL?.trim();

@@ -72,7 +72,7 @@ export default function ConfirmEmail() {
         console.error("Error during verification:", err);
         toast({
           title: "Verification Failed",
-          description: "Please contact DefiKids support for assistance.",
+          description: "Please contact PocketMate support for assistance.",
           status: "error",
         });
       }
@@ -177,7 +177,7 @@ export default function ConfirmEmail() {
         />
 
         <Heading size="lg" ml={5}>
-          Defikids
+          PocketMate
         </Heading>
       </Flex>
     );

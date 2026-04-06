@@ -277,7 +277,7 @@ export const LESSON_QUIZZES: LessonQuiz[] = [
         choices: [
           "A fixed oracle chosen by your bank",
           "Reserves and an invariant (e.g. constant product)",
-          "Rolling dice in Discord",
+          "Random giveaways on social media",
           "The user’s GPS coordinates",
         ],
         correctIndex: 1,

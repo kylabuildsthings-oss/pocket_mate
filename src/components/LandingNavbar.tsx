@@ -19,7 +19,7 @@ import { MenuPopover } from "@/components/MenuPopover";
 import { AiFillAppstore } from "react-icons/ai";
 import { IoMdClose } from "react-icons/io";
 import { UserType } from "@/data-schema/enums";
-import DefiKidsLogo from "@/components/logos/DefiKidsLogo";
+import PocketMateLogo from "@/components/logos/PocketMateLogo";
 import RegisterModal from "@/components/modals/RegisterModal";
 import { getSignerAddress, isWalletConnected } from "@/blockchain/utils";
 import { getUserByWalletAddress } from "@/services/mongo/routes/user";
@@ -118,7 +118,7 @@ export default function LandingNavbar() {
           justifyContent={"space-between"}
           mx={2}
         >
-          <DefiKidsLogo />
+          <PocketMateLogo />
 
           <Flex justifyContent="flex-end">
             {!walletConnected && <CustomConnectButton />}
@@ -146,11 +146,11 @@ export default function LandingNavbar() {
         </Flex>
 
         {/* Titles */}
-        <Collapse in={navigationSection !== "DefiKids"} animateOpacity>
+        <Collapse in={navigationSection !== "PocketMate"} animateOpacity>
           <Box zIndex={5} w="100%">
             <Flex direction="column" align="center" justify="center">
               <Heading size="2xl" color="#82add9">
-                {navigationSection === "DefiKids" ? "" : navigationSection}
+                {navigationSection === "PocketMate" ? "" : navigationSection}
               </Heading>
             </Flex>
           </Box>

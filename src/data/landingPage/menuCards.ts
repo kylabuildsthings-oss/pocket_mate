@@ -19,9 +19,9 @@ export const menuCards = [
   // },
 
   {
-    title: "Use DefiKids",
+    title: "Use PocketMate",
     description:
-      "Follow our step-by-step guide to use DefiKids and earn rewards",
+      "Follow our step-by-step guide to use PocketMate and earn rewards",
     link: "/how-to",
   },
 ];

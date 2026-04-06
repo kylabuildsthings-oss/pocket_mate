@@ -10,7 +10,7 @@ const Logo: React.FC<
     <Image
       {...props}
       src="/logos/pig_logo.png"
-      alt="DefiKids Logo"
+      alt="PocketMate"
       width={width}
       height={height}
     />

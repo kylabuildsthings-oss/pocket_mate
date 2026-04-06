@@ -4,10 +4,7 @@ import sgMail, { MailDataRequired } from "@sendgrid/mail";
 import { getRequiredEnv } from "@/lib/env";
 import { withSecureApi, validateRequiredFields } from "@/lib/apiSecurity";
 
-async function WithdrawRequest(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+async function WithdrawRequest(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { email, username, amount, parentAddress } = req.body as {
       email: string;
@@ -20,7 +17,7 @@ async function WithdrawRequest(
     const msg = {
       to: email,
       from: process.env.SENDGRID_TRANSPORTER_EMAIL_ADDRESS,
-      subject: "DefiKids - Member withdrawal request",
+      subject: "PocketMate - Member withdrawal request",
       text: `${username} has requested to withdraw funds.`,
       html: withdrawRequestHTML(username, "7", amount, parentAddress),
     } as MailDataRequired;
@@ -46,7 +43,12 @@ export default withSecureApi(
     methods: ["POST"],
     rateLimit: { windowMs: 60_000, max: 20 },
     auditEvent: "email.withdraw.requested",
-    validateBody: validateRequiredFields(["email", "username", "amount", "parentAddress"]),
+    validateBody: validateRequiredFields([
+      "email",
+      "username",
+      "amount",
+      "parentAddress",
+    ]),
   },
   WithdrawRequest
 );

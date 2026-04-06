@@ -17,7 +17,7 @@ import { CollapsedDashboardMenu } from "@/components/CollapsedDashboardMenu";
 import { RecentMemberActivity } from "@/components/dashboards/parentDashboard/RecentMemberActivity";
 import StakingContracts from "@/components/dashboards/parentDashboard/StakingContracts";
 import FamilyStatistics from "@/components/dashboards/parentDashboard/FamilyStatistics";
-import { DefiKidsHeading } from "@/components/DefiKidsHeading";
+import { PocketMateHeading } from "@/components/PocketMateHeading";
 import { StableToken } from "@/components/dashboards/parentDashboard/StableToken";
 import { MemberWithdrawRequest } from "@/components/dashboards/parentDashboard/MemberWithdrawRequest";
 
@@ -276,7 +276,7 @@ const ParentDashboardClientLayout = () => {
               h={isMobileSize ? "auto" : "105"}
               mt="1.2rem"
             >
-              <DefiKidsHeading />
+              <PocketMateHeading />
             </GridItem>
           )}
 

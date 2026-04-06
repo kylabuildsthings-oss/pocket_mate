@@ -67,8 +67,9 @@ export const AddDefiDollarsTokenToWallet = async () => {
             address: "0x34bFb9AEb5eDb1Cc9A59952534708cA6A2F5dc53",
             symbol: "DD",
             decimals: 18,
-            image:
-              "https://storage.googleapis.com/defikids_bucket/token-logo.svg",
+            image: `${
+              typeof window !== "undefined" ? window.location.origin : ""
+            }/logos/pig_logo.png`,
           },
         },
       })

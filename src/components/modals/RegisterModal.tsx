@@ -49,11 +49,11 @@ const RegisterModal = ({ isOpen, onClose }) => {
         <Stack>
           <CardBody>
             <Heading size="md" color="#82add9">
-              Welcome to DefiKids
+              Welcome to PocketMate
             </Heading>
 
             <Text py="2" color="#82add9">
-              Register to access the DefiKids platform. A transaction will be
+              Register to access the PocketMate platform. A transaction will be
               required to store a family record that is associated with this
               connected wallet on the blockchain.
             </Text>

@@ -4,10 +4,7 @@ import sgMail, { MailDataRequired } from "@sendgrid/mail";
 import { getRequiredEnv } from "@/lib/env";
 import { withSecureApi, validateRequiredFields } from "@/lib/apiSecurity";
 
-async function inviteMember(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+async function inviteMember(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { token, email, familyName } = req.body as {
       token: string;
@@ -20,7 +17,7 @@ async function inviteMember(
       to: email,
       from: process.env.SENDGRID_TRANSPORTER_EMAIL_ADDRESS,
       subject: "New Member Invitaton",
-      text: `${familyName} has invited you to DefiKids`,
+      text: `${familyName} has invited you to PocketMate`,
       html: inviteMemberHTML(token, familyName),
     } as MailDataRequired;
 

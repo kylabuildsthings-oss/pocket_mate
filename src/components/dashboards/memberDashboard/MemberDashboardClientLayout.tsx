@@ -11,7 +11,7 @@ import { useWindowSize } from "usehooks-ts";
 import { EtherscanModal } from "@/components/modals/EtherscanModal";
 import { RecentMemberActivity } from "@/components/dashboards/parentDashboard/RecentMemberActivity";
 import FamilyStatistics from "@/components/dashboards/parentDashboard/FamilyStatistics";
-import { DefiKidsHeading } from "@/components/DefiKidsHeading";
+import { PocketMateHeading } from "@/components/PocketMateHeading";
 import { WithdrawDefiDollarsModal } from "@/components/modals/WithdrawDefiDollarsModal";
 import { watchNetwork, getNetwork } from "@wagmi/core";
 import { WrongNetwork } from "@/components/WrongNetwork";
@@ -193,7 +193,7 @@ const MemberDashboardClientLayout = ({ user }: { user: User }) => {
               h={isMobileSize ? "auto" : "105"}
               mt="1.2rem"
             >
-              <DefiKidsHeading />
+              <PocketMateHeading />
             </GridItem>
           )}
 

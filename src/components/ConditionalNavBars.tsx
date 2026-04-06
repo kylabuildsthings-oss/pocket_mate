@@ -29,7 +29,7 @@ export const ConditionalNavBars = () => {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (navigationSection === "DefiKids") {
+    if (navigationSection === "PocketMate") {
       onToggle;
     }
   }, [navigationSection]);

@@ -31,7 +31,7 @@ type MyStore = State & Actions;
 export const initialState: State = {
   connectedWallet: "",
   isLoggedIn: false,
-  navigationSection: "DefiKids",
+  navigationSection: "PocketMate",
   mobileMenuOpen: false,
   logout: () => {},
   reset: () => void {},

@@ -45,7 +45,7 @@ export default function LegalSupportPage() {
             </Text>
           )}
           <Text fontSize="xs" color="pm.muted">
-            Replace legacy DefiKids community routes if needed:{" "}
+            Legacy community routes if needed:{" "}
             <ChakraLink
               href="/community"
               color="pm.primarySoft"

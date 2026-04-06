@@ -210,7 +210,7 @@ export const AddToLocker = ({
         </Text>
 
         <Text fontSize={"md"} mb={1}>
-          You will by require to permit the Defikids core contract to transfer
+          You will be required to permit the core locker contract to transfer
           your token on your behalf.
         </Text>
 

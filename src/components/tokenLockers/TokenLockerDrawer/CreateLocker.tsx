@@ -219,8 +219,8 @@ export const CreateLocker = ({
         </Text>
 
         <Text fontSize={"md"} mb={1}>
-          You as the signer acknowledge that Defikids will be permitted to
-          transfer your token on your behalf.
+          You as the signer acknowledge that the PocketMate app will be
+          permitted to transfer your token on your behalf.
         </Text>
         <FormControl>
           <Input

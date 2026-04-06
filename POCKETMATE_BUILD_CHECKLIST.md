@@ -41,7 +41,7 @@ How to use:
 - [x] 1. Project Setup (Day 0)
 
   - [x] Create/initialize PocketMate repo in `/Volumes/KYE SSD 2023/POCKETMATE`
-  - [x] Import `defikids-dapp` baseline structure and clean unused code
+  - [x] Import legacy open-source baseline structure and clean unused code
   - [ ] Set up branch strategy (`main`, `develop`, feature branches) _(team / git workflow — not tracked in code)_
   - [x] Add core dependencies (Next.js, Tailwind, shadcn/ui, wagmi, viem, Prisma, auth, testing) _(Chakra UI stack in use; Prisma/auth/testing as brought in from baseline)_
 

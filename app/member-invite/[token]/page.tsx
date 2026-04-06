@@ -165,7 +165,7 @@ const MemberInvite = () => {
         />
 
         <Heading size="lg" ml={5}>
-          Defikids
+          PocketMate
         </Heading>
       </Flex>
     );
@@ -267,7 +267,7 @@ const MemberInvite = () => {
             </Heading>
 
             <Text my={5} textAlign="center">
-              {`You have been invited to join a DefiKids family. To accept this
+              {`You have been invited to join a PocketMate family. To accept this
               invitation, please connect your
               wallet.`}
             </Text>
@@ -294,7 +294,7 @@ const MemberInvite = () => {
             ) : (
               <Text align="center" my={5}>
                 This is the wallet you are currently connected to and will be
-                used to create your DefiKids account.
+                used to create your PocketMate account.
               </Text>
             )}
             <Center>

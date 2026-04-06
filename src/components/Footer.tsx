@@ -68,11 +68,11 @@ export default function Footer() {
       {/* Copyright */}
       {/* <Center> */}
       {/* <Text fontSize="sm" color="white">
-        &copy; {new Date().getFullYear()} DefiKids Inc. All rights reserved.
+        &copy; {new Date().getFullYear()} PocketMate. All rights reserved.
       </Text> */}
       <Flex direction="column" alignContent="center">
         <Heading as="h6" size="xs">
-          &copy; {new Date().getFullYear()} DefiKids Inc.
+          &copy; {new Date().getFullYear()} PocketMate
         </Heading>
       </Flex>
       {/* </Center> */}
@@ -175,18 +175,18 @@ export default function Footer() {
                 cursor={"pointer"}
                 onClick={() =>
                   window.open(
-                    `https://github.com/NathanTarbert/DefiKids`,
+                    `https://github.com/kylabuildsthings-oss/pocket_mate`,
                     "_blank"
                   )
                 }
               >
                 <Avatar
                   size="md"
-                  name="defi-kids"
+                  name="PocketMate"
                   mr={2}
                   src="/logos/pig_logo.png"
                 />{" "}
-                DefiKids
+                PocketMate
               </Flex>
             </PopoverHeader>
 

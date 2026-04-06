@@ -1,14 +1,14 @@
 {
-  "name": "defikids-dapp",
+  "name": "pocketmate",
   "private": true,
   "version": "1.0.0",
-  "description": "DefiKids is a place where families can go to educate kids about budgets using crypto | defi safely.",
+  "description": "Learn. Trade. Build. PocketMate — lessons, trade surfaces (demo/live), and strategy builder for DeFi practice.",
   "author": "Jason Schwarz <jason.c.schwarz@gmail.com> & Nathan Tarbert <nate4t@hotmail.com>",
   "license": "MIT",
-  "homepage": "https://defikids.io",
+  "homepage": "https://github.com/kylabuildsthings-oss/pocket_mate",
   "repository": {
     "type": "git",
-    "url": "https://github.com/defikids/defikids-dapp"
+    "url": "https://github.com/kylabuildsthings-oss/pocket_mate"
   },
   "engines": {
     "node": ">=18",
@@ -25,7 +25,7 @@
     "e2e": "playwright test",
     "e2e:install": "playwright install chromium",
     "prepare": "husky install",
-    "docker": "docker build -t defikids-dapp . && docker run -p 3000:3000 defikids-dapp",
+    "docker": "docker build -t pocketmate . && docker run -p 3000:3000 pocketmate",
     "postinstall": "prisma generate",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate deploy",

@@ -17,8 +17,8 @@ export default function HubPage() {
         </Heading>
         <Text color="pm.muted" fontSize="md" maxW="760px">
           Strategy feed, discussion threads per strategy, and leaderboards.
-          Comments and votes stay on this device until accounts ship. Legacy
-          DefiKids social links still live at{" "}
+          Comments and votes stay on this device until accounts ship. The
+          classic community page (legacy routes) is still available at{" "}
           <ChakraLink
             as={NextLink}
             href="/community"

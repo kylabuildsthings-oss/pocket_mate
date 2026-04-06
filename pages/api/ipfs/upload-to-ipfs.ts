@@ -95,7 +95,7 @@ export default async function uploadToIpfsRoute(
     const { mediaHash, mediaError: imageError } = await pinFileToIPFS({
       payload: fileReadStreams.imageReadStream,
       // @ts-ignore
-      fileName: `DefiKids-${description}-${String(
+      fileName: `PocketMate-${description}-${String(
         // @ts-ignore
         uploadedFile.originalFilename.split(".")[0]
       )}`,

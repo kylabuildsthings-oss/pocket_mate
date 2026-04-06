@@ -87,13 +87,13 @@ const ResourcesModal = () => {
           <Image
             borderRadius={20}
             src="/images/backgrounds/urban.svg"
-            alt="DefiKids"
+            alt="PocketMate resources"
           />
 
           <Flex height={130} justifyContent="center">
             <Center>
               <Button variant="solid" colorScheme="blue" onClick={onOpen}>
-                Why DefiKids?
+                Why PocketMate?
               </Button>
             </Center>
             <Modal isOpen={isOpen} onClose={onClose}>

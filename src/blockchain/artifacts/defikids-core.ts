@@ -1,3 +1,4 @@
+/** On-chain ABI export name matches legacy deployed contracts; do not rename without a migration. */
 export const defikidsCoreABI = [
   {
     inputs: [],

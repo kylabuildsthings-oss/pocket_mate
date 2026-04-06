@@ -9,8 +9,7 @@ import {
   Container,
   useBreakpointValue,
   VStack,
-  Grid,
-  GridItem,
+  Text,
 } from "@chakra-ui/react";
 import Navbar from "@/components/LandingNavbar";
 
@@ -22,8 +21,8 @@ export default function Community() {
     lg: false,
   });
 
-  const twitterLink = "https://twitter.com/defikids_";
-  const discordLink = "https://discord.gg/bDGMYNa8Ng";
+  const projectLink = "https://github.com/kylabuildsthings-oss/pocket_mate";
+
   return (
     <Box m={5}>
       <Navbar />
@@ -35,37 +34,42 @@ export default function Community() {
           mb={5}
           color="#90cdf4"
         >
-          Join our community of DefiKids!
+          PocketMate community
         </Heading>
       </Center>
-      <VStack mt={50}>
+      <VStack mt={50} spacing={8}>
         <Container maxW="60%" centerContent mb={-90} mt={-58}>
           <Box padding="4" maxW="100%">
             <Image
               boxSize="100%"
-              src="/images/defikids-community-graphic.gif"
-              alt="Dan Abramov"
+              src="/logos/polygon.svg"
+              alt="PocketMate community"
               mr={5}
             />
           </Box>
         </Container>
-        <Grid templateColumns="repeat(2, 1fr)" gap={10} mt={20}>
-          <GridItem>
-            <Link href={twitterLink} passHref target="_blank">
-              <Center fontSize={20} color="#90cdf4">
-                <h1>Twitter</h1>
-              </Center>
-            </Link>
-          </GridItem>
-
-          <GridItem>
-            <Link href={discordLink} passHref target="_blank">
-              <Center fontSize={20} color="#90cdf4">
-                <h1>Discord</h1>
-              </Center>
-            </Link>
-          </GridItem>
-        </Grid>
+        <VStack spacing={4} mt={20}>
+          <Link
+            href={projectLink}
+            passHref
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Center fontSize={20} color="#90cdf4">
+              <Text as="span">Source & issues on GitHub</Text>
+            </Center>
+          </Link>
+          <Text fontSize="sm" color="gray.400" textAlign="center" maxW="md">
+            In-app strategy feed and hub: use{" "}
+            <Link
+              href="/hub"
+              style={{ color: "#90cdf4", textDecoration: "underline" }}
+            >
+              /hub
+            </Link>{" "}
+            from the PocketMate shell.
+          </Text>
+        </VStack>
       </VStack>
     </Box>
   );

@@ -2,6 +2,10 @@ export default function confirmEmailAddressHTML(
   username: string,
   token: string
 ) {
+  const supportEmail =
+    process.env.SUPPORT_EMAIL ??
+    process.env.NEXT_PUBLIC_SUPPORT_EMAIL ??
+    "support@example.com";
   return `
   <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -66,13 +70,7 @@ export default function confirmEmailAddressHTML(
     
           <!-- LOGO -->
           <!-- Image text color should be opposite to background color. Set your url, image src, alt and title. Alt text should fit the image size. Real image size should be x2. URL format: http://domain.com/?utm_source={{Campaign-Source}}&utm_medium=email&utm_content=logo&utm_campaign={{Campaign-Name}} -->
-          <a target="_blank" style="text-decoration: none;"
-            href="#"><img border="0" vspace="0" hspace="0"
-            src="https://storage.googleapis.com/defikids_bucket/defikids-logo-dark.png"
-            width="300" height="150"
-             title="Logo" style="
-            color: #000000;
-            font-size: 10px; margin: 0; padding: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;" /></a>
+          <div style="font-family:sans-serif;font-size:28px;font-weight:700;color:#1a365d;padding:16px 0;">PocketMate</div>
     
         </td>
       </tr>
@@ -130,7 +128,7 @@ export default function confirmEmailAddressHTML(
           padding-top: 25px; 
           color: #000000;
           font-family: sans-serif;" class="paragraph">
-          You've just created an account with DefiKids. Please confirm your email address to continue.
+          You've just created an account with PocketMate. Please confirm your email address to continue.
         </td>
       </tr>
     
@@ -170,7 +168,7 @@ export default function confirmEmailAddressHTML(
           padding-bottom: 25px;
           color: #000000;
           font-family: sans-serif;" class="paragraph">
-            Have a&nbsp;question? <a href="mailto:support@defikids.io" target="_blank" style="color: #127DB3; font-family: sans-serif; font-size: 17px; font-weight: 400; line-height: 160%;">support@defikids.io</a>
+            Have a&nbsp;question? <a href="mailto:${supportEmail}" target="_blank" style="color: #127DB3; font-family: sans-serif; font-size: 17px; font-weight: 400; line-height: 160%;">${supportEmail}</a>
         </td>
       </tr>
     
@@ -193,7 +191,7 @@ export default function confirmEmailAddressHTML(
           color: #999999;
           font-family: sans-serif;" class="footer">
     
-            This email was sent to you because you registered an account with DefiKids Inc. If you did not create an account, please ignore this email.
+            This email was sent to you because you registered a PocketMate account. If you did not create an account, please ignore this email.
     
             <!-- ANALYTICS -->
             <!-- https://www.google-analytics.com/collect?v=1&tid={{UA-Tracking-ID}}&cid={{Client-ID}}&t=event&ec=email&ea=open&cs={{Campaign-Source}}&cm=email&cn={{Campaign-Name}} -->
