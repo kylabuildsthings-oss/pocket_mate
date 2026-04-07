@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="PocketMate wallet icon">
+  <rect width="64" height="64" rx="14" fill="#6B46C1"/>
+  <rect x="10" y="18" width="44" height="28" rx="8" fill="#F7FAFC"/>
+  <path d="M14 26h30a4 4 0 0 1 4 4v2h-6a4 4 0 0 0 0 8h6v2a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V30a4 4 0 0 1 4-4Z" fill="#E2E8F0"/>
+  <rect x="38" y="32" width="16" height="8" rx="4" fill="#1A202C"/>
+  <circle cx="45" cy="36" r="1.8" fill="#F6E05E"/>
+</svg>

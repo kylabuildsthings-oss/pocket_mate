@@ -20,6 +20,11 @@ const fontPmHeading = Space_Grotesk({
 export const metadata: Metadata = {
   title: "PocketMate",
   description: "Learn. Trade. Build. — DeFi for students.",
+  icons: {
+    icon: "/wallet-favicon.svg",
+    shortcut: "/wallet-favicon.svg",
+    apple: "/wallet-favicon.svg",
+  },
 };
 
 export default function RootLayout({
