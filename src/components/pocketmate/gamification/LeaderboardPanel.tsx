@@ -49,16 +49,45 @@ export function LeaderboardPanel() {
         <Table size="sm" variant="simple">
           <Thead>
             <Tr>
-              <Th color="pm.muted" borderColor="pm.border">
+              <Th
+                color="pm.muted"
+                borderColor="pm.border"
+                textTransform="none"
+                letterSpacing="normal"
+                fontFamily="var(--font-pm-body)"
+                fontWeight="semibold"
+              >
                 #
               </Th>
-              <Th color="pm.muted" borderColor="pm.border">
+              <Th
+                color="pm.muted"
+                borderColor="pm.border"
+                textTransform="none"
+                letterSpacing="normal"
+                fontFamily="var(--font-pm-body)"
+                fontWeight="semibold"
+              >
                 Student
               </Th>
-              <Th color="pm.muted" borderColor="pm.border">
+              <Th
+                color="pm.muted"
+                borderColor="pm.border"
+                textTransform="none"
+                letterSpacing="normal"
+                fontFamily="var(--font-pm-body)"
+                fontWeight="semibold"
+              >
                 University
               </Th>
-              <Th isNumeric color="pm.muted" borderColor="pm.border">
+              <Th
+                isNumeric
+                color="pm.muted"
+                borderColor="pm.border"
+                textTransform="none"
+                letterSpacing="normal"
+                fontFamily="var(--font-pm-body)"
+                fontWeight="semibold"
+              >
                 Score
               </Th>
             </Tr>
